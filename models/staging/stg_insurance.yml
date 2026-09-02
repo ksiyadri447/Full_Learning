@@ -1,0 +1,41 @@
+version: 2
+
+models:
+
+  - name: stg_insurance
+
+    description: >
+      Standardized insurance plan information
+      sourced from the claims system.
+
+    columns:
+
+      - name: insurance_id
+        description: Unique identifier for an insurance plan.
+
+        data_tests:
+          - not_null
+          - unique
+
+      - name: insurance_name
+        description: Name of the insurance provider.
+
+        data_tests:
+          - not_null
+
+      - name: insurance_type
+        description: Type of insurance coverage.
+
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values:
+                  - Private
+                  - Government
+
+      - name: plan_name
+        description: Insurance plan name.
+
+        data_tests:
+          - not_null

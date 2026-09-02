@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: dim_patient
+    description: >
+      Patient dimension containing demographic information
+      and associated insurance plan details.
+
+    columns:
+      - name: patient_id
+        description: Unique identifier for each patient.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: first_name
+        description: Patient first name.
+
+      - name: last_name
+        description: Patient last name.
+
+      - name: date_of_birth
+        description: Patient date of birth.
+
+      - name: gender
+        description: Standardized patient gender.
+
+      - name: city
+        description: Patient city.
+
+      - name: state
+        description: Patient state.
+
+      - name: insurance_id
+        description: Identifier for the patient's insurance plan.
+
+      - name: insurance_name
+        description: Name of the patient's insurance provider.
+
+      - name: insurance_type
+        description: Type of insurance coverage.
+
+      - name: plan_name
+        description: Name of the patient's insurance plan.

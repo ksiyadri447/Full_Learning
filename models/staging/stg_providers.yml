@@ -1,0 +1,57 @@
+version: 2
+
+models:
+  - name: stg_providers
+    description: >
+      Staging model that cleans and standardizes healthcare provider data.
+
+    columns:
+      - name: provider_id
+        description: Unique identifier for the healthcare provider.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: provider_first_name
+        description: Provider first name.
+        data_tests:
+          - not_null
+
+      - name: provider_last_name
+        description: Provider last name.
+        data_tests:
+          - not_null
+
+      - name: specialty
+        description: Standardized medical specialty.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values:
+                  - Cardiology
+                  - Emergency Medicine
+                  - Pediatrics
+                  - Other
+
+      - name: provider_type
+        description: Type of healthcare provider.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values:
+                  - Physician
+                  - Other
+
+      - name: license_number
+        description: Professional license number.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: created_at
+        description: Timestamp when the provider record was created.
+
+      - name: updated_at
+        description: Timestamp when the provider record was last updated.

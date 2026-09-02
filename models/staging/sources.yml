@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+
+  - name: ehr
+    database: HEALTHCARE_DB
+    schema: RAW_EHR
+
+    tables:
+      - name: patients
+      - name: encounters
+      - name: FACILITIES
+
+      - name: PROVIDERS
+
+  - name: claims
+    database: HEALTHCARE_DB
+    schema: RAW_CLAIMS
+
+    tables:
+      - name: insurance

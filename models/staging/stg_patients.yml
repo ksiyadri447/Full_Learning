@@ -1,0 +1,63 @@
+version: 2
+
+models:
+  - name: stg_patients
+
+    description: >
+      Cleaned and standardized patient records
+      sourced from the healthcare EHR system.
+
+    columns:
+
+      - name: patient_id
+        description: Unique identifier for each patient.
+
+        data_tests:
+          - not_null
+          - unique
+
+      - name: first_name
+        description: Patient first name.
+
+      - name: last_name
+        description: Patient last name.
+
+      - name: date_of_birth
+        description: Patient date of birth.
+
+        data_tests:
+          - not_null
+
+      - name: gender
+        description: Standardized patient gender.
+
+        data_tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - Male
+                  - Female
+                  - Unknown
+
+      - name: city
+        description: Patient city.
+
+      - name: state
+        description: Patient state.
+
+      - name: insurance_id
+        description: Identifier for the patient's insurance plan.
+
+        data_tests:
+          - not_null
+
+          - relationships:
+              arguments:
+                to: ref('stg_insurance')
+                field: insurance_id
+
+      - name: created_at
+        description: Timestamp when the patient record was created.
+
+      - name: updated_at
+        description: Timestamp when the patient record was last updated.

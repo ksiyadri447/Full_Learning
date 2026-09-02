@@ -1,0 +1,55 @@
+version: 2
+
+models:
+  - name: dim_facility
+    description: >
+      Facility dimension containing one row per healthcare facility.
+
+    columns:
+      - name: facility_key
+        description: Warehouse key identifying the healthcare facility.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: facility_id
+        description: Natural/business key from the source facility system.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: facility_name
+        description: Name of the healthcare facility.
+        data_tests:
+          - not_null
+
+      - name: facility_type
+        description: Type of healthcare facility.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values:
+                  - Hospital
+                  - Medical Center
+                  - Clinic
+                  - Unknown
+
+      - name: city
+        description: City where the facility is located.
+        data_tests:
+          - not_null
+
+      - name: state
+        description: State where the facility is located.
+        data_tests:
+          - not_null
+
+      - name: address
+        description: Physical address of the healthcare facility.
+
+      - name: created_at
+        description: Timestamp when the facility record was created.
+
+      - name: updated_at
+        description: Timestamp when the facility record was last updated.

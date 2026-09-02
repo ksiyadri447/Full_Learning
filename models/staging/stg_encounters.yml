@@ -1,0 +1,70 @@
+version: 2
+
+models:
+  - name: stg_encounters
+    description: >
+      Standardized healthcare encounter records sourced
+      from the EHR system.
+
+    columns:
+      - name: encounter_id
+        description: Unique identifier for each patient encounter.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: patient_id
+        description: Identifier of the patient associated with the encounter.
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_patients')
+                field: patient_id
+
+      - name: provider_id
+        description: Identifier of the healthcare provider.
+        data_tests:
+          - not_null
+
+      - name: facility_id
+        description: Identifier of the healthcare facility.
+        data_tests:
+          - not_null
+
+      - name: encounter_type
+        description: Type of healthcare encounter.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values:
+                  - Outpatient
+                  - Inpatient
+                  - Emergency
+                  - Telehealth
+
+      - name: admission_datetime
+        description: Date and time when the encounter started.
+        data_tests:
+          - not_null
+
+      - name: discharge_datetime
+        description: Date and time when the encounter ended.
+
+      - name: status
+        description: Current status of the encounter.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values:
+                  - Completed
+                  - Cancelled
+                  - Scheduled
+
+      - name: created_at
+        description: Timestamp when the encounter record was created.
+
+      - name: updated_at
+        description: Timestamp when the encounter record was last updated.

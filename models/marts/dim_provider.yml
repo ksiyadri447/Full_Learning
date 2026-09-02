@@ -1,0 +1,61 @@
+version: 2
+
+models:
+  - name: dim_provider
+    description: >
+      Slowly changing provider dimension containing historical
+      versions of healthcare provider records.
+
+    columns:
+      - name: provider_key
+        description: Surrogate key uniquely identifying a provider version.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: provider_id
+        description: Natural/business key identifying the provider.
+        data_tests:
+          - not_null
+
+      - name: provider_first_name
+        description: Provider first name.
+        data_tests:
+          - not_null
+
+      - name: provider_last_name
+        description: Provider last name.
+        data_tests:
+          - not_null
+
+      - name: provider_name
+        description: Full name of the healthcare provider.
+        data_tests:
+          - not_null
+
+      - name: specialty
+        description: Medical specialty for this provider version.
+        data_tests:
+          - not_null
+
+      - name: provider_type
+        description: Type of healthcare provider.
+        data_tests:
+          - not_null
+
+      - name: license_number
+        description: Professional license number.
+        data_tests:
+          - not_null
+
+      - name: valid_from
+        description: Timestamp when this provider version became effective.
+        
+
+      - name: valid_to
+        description: Timestamp when this provider version stopped being effective.
+
+      - name: is_current
+        description: Indicates whether this is the current provider version.
+        data_tests:
+          - not_null
